@@ -7,10 +7,9 @@ module.exports = (req, res) => {
     if (result.code === 400) {
       userModel.create({
         userName: req.body.userName,
-        fullName: req.body.fullName,
+        fullName: req.body.fullName || req.body.userName,
         password: req.body.password
       }, (err, newUser) => {
-        console.log(1)
         if (newUser && !err) {
           
           res.status(200).json({
@@ -31,11 +30,15 @@ module.exports = (req, res) => {
         }
       })
     } else {
-      res.status(400).json({
+      res.status(200).json({
         code: 400,
         title: 'warning',
         data: {
-          message: 'Username is already exists'
+          message: 'Username is already exists',
+          status: {
+            isCorrectPassword: false,
+            isCorrectUsername: true
+          }
         }
       })
     }

@@ -12,7 +12,7 @@ module.exports = (req, res) => {
             _id: result.user._id
           }
         }, 'secretkey', (err, token) => {
-          res.status(200).json({
+          res.status(200).json({  
             code: 200,
             title: 'Success',
             data: {
@@ -30,7 +30,11 @@ module.exports = (req, res) => {
           code: 400,
           title: 'warning',
           data: {
-            message: 'password do not match'
+            message: 'password do not match',
+            status: {
+              isCorrectPassword: false,
+              isCorrectUsername: true
+            } 
           }
         })
       }
@@ -39,7 +43,11 @@ module.exports = (req, res) => {
         code: 400,
         title: 'warning',
         data: {
-          message: 'Username does not exist'
+          message: 'Username does not exist',
+          status: {
+            isCorrectPassword: true,
+            isCorrectUsername: false
+          }
         }
       })
     }

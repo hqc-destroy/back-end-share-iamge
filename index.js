@@ -1,14 +1,14 @@
-const express = require('express')
-const app = express()
+const app = require('express')()
 const bodyParser = require('body-parser')
-const router = require('./src/routes/index.js')
-require('./src/connection/databaseConnection.js')() // connect Database
-
+const http = require('http').createServer(app)
+const io = require('socket.io')(http)
+const router = require('./src/routes/index.js');
+const dbConnection = require('./src/connection/databaseConnection.js')
+dbConnection()
 const morgan = require('morgan')
 app.use(morgan('dev'))
-
 const cors = require('cors')
-const whitelist = ['http://localhost:8080', '*', undefined, 'null']
+// const whitelist = ['http://localhost:8080', 'http://localhost:8081', 'http://localhost:8082', 'https://japanese-vnu.herokuapp.com']
 // const corsOptions = {
 //   origin: function (origin, callback) {
 //     if (whitelist.indexOf(origin) !== -1) {
@@ -18,22 +18,32 @@ const whitelist = ['http://localhost:8080', '*', undefined, 'null']
 //     }
 //   }
 // }
-var corsOptions = {
+const corsOptions = {
   origin: '*',
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 app.use(cors(corsOptions))
-
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 
-app.get('/', (req, res) => {
-  res.send('Application is Running')
+
+app.get('/', function (req, res) {
+  res.sendFile(__dirname + '/index.html');
+});
+
+
+
+router(app);
+
+
+const mySocket = require('./src/sockets/index')
+io.on('connection', function(socket) {
+  console.log('a user connected' + socket.id)
+  mySocket.run(socket, io)
 })
 
 const PORT = process.env.PORT || 3000
 
-router(app)
-app.listen(PORT, () => {
-  console.log('Application running on PORT: ', PORT)
+http.listen(PORT, function(){
+  console.log('listening on *:' + PORT)
 })
