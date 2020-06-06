@@ -1,3 +1,5 @@
 module.exports= {
-    createImage: require('./createImage')
+    createImage: require('./createImage'),
+    updateImage: require('./updateImage'),
+    deleteImage: require('./deleteImage')
 }
