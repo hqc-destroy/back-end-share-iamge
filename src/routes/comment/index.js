@@ -9,7 +9,7 @@ const middlewareComment = require('../../middleware/comment')
 module.exports = () => {
     router.post(constants.COMMENT.CREATE_COMMENT, middlewareComment.createComment, createComment)
     router.put(constants.COMMENT.UPDATE_COMMENT, middlewareComment.updateComment, updateComment)
-    router.delete(constants.COMMENT.DELETE_COMMENT, deleteComment)
+    router.delete(constants.COMMENT.DELETE_COMMENT, middlewareComment.deleteComment , deleteComment)
     router.get(constants.COMMENT.GET_COMMENT, getComments)
     return router
 }
