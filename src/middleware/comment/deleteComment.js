@@ -1,4 +1,4 @@
-module.exports = (req, res, next) => {
+module.exports = (req, res, next) => { // check thêm token xem có đúng phải user comment ko? gợi ý ở phần prams gửi thêm userID nữa
     if(!req.params.id) {
         res.status(400).json({
             code: 400,
