@@ -17,7 +17,7 @@ module.exports = (req, res) => {
             res.status(400).json({
                 code: 400,
                 title: 'error',
-                date: {
+                data: {
                     message: "Can't update comment"
                 }
             });

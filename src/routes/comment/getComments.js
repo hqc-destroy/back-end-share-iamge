@@ -11,6 +11,7 @@ module.exports = (req, res) => {
             code: 200,
             title: 'SUCCESS',
             data: {
+                message: "SUCCESS",
                 comments: newArr
             }
         });

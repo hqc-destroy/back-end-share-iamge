@@ -8,7 +8,8 @@ module.exports = (req, res) => {
                 code: 200,
                 title: 'Success',
                 data: {
-                    message: 'DELETE SUCCESS'
+                    message: 'DELETE SUCCESS',
+                    comment: commentResult
                 }
             }); // viết theo format trả về client
         } else {

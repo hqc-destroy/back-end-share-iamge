@@ -1,3 +1,5 @@
+const jwt = require('../../constants/token')
+
 module.exports = (req, res, next) => {
     if(!req.params.id) {
         res.status(400).json({
