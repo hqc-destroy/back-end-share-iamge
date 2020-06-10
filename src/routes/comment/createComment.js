@@ -12,7 +12,13 @@ module.exports = (req, res) => {
         }
         commentModel.create(newComment, (err, commentResult) => {
             if(commentResult && !err) {
-                res.status(200).send(commentResult)
+                res.status(200).json({
+                    code: 200,
+                    title: "SUCCESS",
+                    data: {
+                        comment: commentResult
+                    }
+                })
             } else {
                 res.status(400).json({
                     code: 400,

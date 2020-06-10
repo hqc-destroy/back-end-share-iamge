@@ -6,8 +6,14 @@ module.exports = (req, res) => {
        if (comments && !err) {
         const newArr = comments.filter((comment) => {
             return comment.imageId === imageId
-        })
-        res.status(200).send(newArr)
+        });
+        res.status(200).json({
+            code: 200,
+            title: 'SUCCESS',
+            data: {
+                comments: newArr
+            }
+        });
        } else {
            res.status(400).json({
                code: 400,
@@ -15,7 +21,7 @@ module.exports = (req, res) => {
                data: {
                    message: "Can't comments"
                }
-           })
+           });
        }
-    })
+    });
 }
