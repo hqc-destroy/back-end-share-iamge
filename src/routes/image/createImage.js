@@ -10,7 +10,14 @@ module.exports = (req, res) => {
         }
         imageModel.create(newImage, (err, imageResult) => {
             if (imageResult && !err) {
-                res.status(200).send(imageResult)
+                res.status(200).json({
+                    code: 200,
+                    title: "SUCCESS",
+                    data: {
+                        message: "SUCCESS",
+                        image: imageResult
+                    }
+                })
             } else {
                 res.status(400).json({
                     code: 400,

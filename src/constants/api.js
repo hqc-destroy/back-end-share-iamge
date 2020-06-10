@@ -10,7 +10,7 @@ module.exports = {
     IMAGE: {
         GET_IMAGES: '/', 
         CREATE_IMAGE: '/', // /create-image -> / note: Create a new image theo userId (method: post)
-        UPDATE_IMAGE: '/:id', // /update-image -> / note: Update a new image theo userId (method: put)
-        DELETE_IMAGE: '/:id'
+        UPDATE_IMAGE: '/:id/:userId', // /update-image -> / note: Update a new image theo userId (method: put)
+        DELETE_IMAGE: '/:id/:userId'
     }
 }
