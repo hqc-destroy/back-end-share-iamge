@@ -10,7 +10,7 @@ module.exports = {
     COMMENT: {
         CREATE_COMMENT: '/', // /create-comment -> / note: Create a new commnet
         UPDATE_COMMENT: '/:id',// update-comment -> / note: update a comment
-        DELETE_COMMENT: '/:id', // delete-comment -> / note: delete a commnent
+        DELETE_COMMENT: '/:id/:userId', // delete-comment -> / note: delete a commnent
         GET_COMMENT: '/'
     }
 }

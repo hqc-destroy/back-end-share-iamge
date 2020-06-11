@@ -12,7 +12,14 @@ module.exports = (req, res) => {
         }
         commentModel.create(newComment, (err, commentResult) => {
             if(commentResult && !err) {
-                res.status(200).send(commentResult) // đoạn này ông nên gửi theo format chung giống tôi ý
+                res.status(200).json({
+                    code: 200,
+                    title: "SUCCESS",
+                    data: {
+                        message: "SUCCESS",
+                        comment: commentResult
+                    }
+                })
             } else {
                 res.status(400).json({
                     code: 400,
