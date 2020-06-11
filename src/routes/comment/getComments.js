@@ -7,7 +7,7 @@ module.exports = (req, res) => {
         const newArr = comments.filter((comment) => {
             return comment.imageId === imageId
         })
-        res.status(200).send(newArr)
+        res.status(200).send(newArr) // viết theo format trả về nhé
        } else {
            res.status(400).json({
                code: 400,

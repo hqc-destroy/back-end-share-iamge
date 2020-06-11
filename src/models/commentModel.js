@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const commentSchema = new Schema({
     imageId: String,
     date: Date,
-    user: {userId: String, userName: String},
+    user: {userId: String, userName: String}, // Không viết như này nhé, nên viết xuống dòng
     content: String
 })
 

@@ -1,4 +1,4 @@
-module.exports = (req, res, next) => {
+module.exports = (req, res, next) => { // check thêm token như phần delete và create
     if(!req.params.id) {
         res.status(400).json({
             code: 400,
