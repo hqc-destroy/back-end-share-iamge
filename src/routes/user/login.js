@@ -9,7 +9,9 @@ module.exports = (req, res) => {
         jwt.sign({
           user: {
             userName: result.user.userName,
-            _id: result.user._id
+            _id: result.user._id,
+            avatarUrl: result.user.avatarUrl,
+            fullName: result.user.fullName,
           }
         }, 'secretkey', (err, token) => {
           res.status(200).json({  
@@ -20,7 +22,8 @@ module.exports = (req, res) => {
               user: {
                 token: token,
                 userName: result.user.userName,
-                fullName: result.user.fullName
+                fullName: result.user.fullName,
+                avatarUrl: result.user.avatarUrl
               }
             }
           });

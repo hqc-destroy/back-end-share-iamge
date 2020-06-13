@@ -4,12 +4,15 @@ const constants =  require('../../constants/api')
 const updateComment = require('./updateComment')
 const deleteComment = require('./deleteComment')
 const getComments = require('./getComments')
+const getCommentsByImageId = require('./getCommentsByImageId')
 const middlewareComment = require('../../middleware/comment')
+
 
 module.exports = () => {
     router.post(constants.COMMENT.CREATE_COMMENT, middlewareComment.createComment, createComment)
     router.put(constants.COMMENT.UPDATE_COMMENT, middlewareComment.updateComment, updateComment)
-    router.delete(constants.COMMENT.DELETE_COMMENT, middlewareComment.deleteComment , deleteComment)
+    router.delete(constants.COMMENT.DELETE_COMMENT, middlewareComment.deleteComment, deleteComment)
     router.get(constants.COMMENT.GET_COMMENT, getComments)
+    router.get(constants.COMMENT.GET_COMMENTS_BY_IMAGEID, middlewareComment.getCommentsByImageId, getCommentsByImageId)
     return router
 }

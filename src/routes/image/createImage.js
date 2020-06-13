@@ -4,9 +4,17 @@ const jwt = require('../../constants/token')
 module.exports = (req, res) => {
     jwt.verify(req.body.token).then((result)=> {
         const newImage = {
+            title:req.body.title,
             base64 : req.body.base64,
+            date: `${new Date().getDate()}/${new Date().getMonth()}/${new Date().getFullYear()}`,
+            user: { 
+                userId: result.user._id,
+                fullName: result.user.fullName,
+                userName: result.user.userName,
+                avatarUrl: result.user.avatarUrl
+            },
             userId: result.user._id,
-            userName: result.user.userName
+            listUserLike: []          
         }
         imageModel.create(newImage, (err, imageResult) => {
             if (imageResult && !err) {

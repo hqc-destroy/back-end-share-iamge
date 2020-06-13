@@ -1,7 +1,7 @@
 const commentModel = require('../../models/commentModel').comment
 
 module.exports = (req, res) => {
-    const commentId = req.params.id 
+    const commentId = req.params.commentId 
     commentModel.findOneAndDelete({ _id: commentId }, (err, commentResult) => { // nên sửa đoạn kia lại thành { _id: commentId } theo format code
         if (commentResult && !err) {
             res.status(200).json({

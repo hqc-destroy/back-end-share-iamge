@@ -30,7 +30,10 @@ function verify (token) {
         })
         reject(new Error('Something went Error...'))
       } else {
-        resolve(data)
+        resolve({
+          data: data,
+          code:200
+        })
       }
     })
   })

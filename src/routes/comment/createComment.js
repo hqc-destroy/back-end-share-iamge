@@ -6,8 +6,13 @@ module.exports = (req, res) => {
     jwt.verify(req.body.token).then((result) => {
         const newComment = {
             imageId : req.body.imageId,
-            date: Date(),
-            user: {userId: result.user._id, userName: result.user.userName},
+            date: `${new Date().getDate()}/${new Date().getMonth()}/${new Date().getFullYear()}`,
+            user: {
+                userId: result.user._id, 
+                userName: result.user.userName,
+                fullName: result.user.fullName,
+                avatarUrl: result.user.avatarUrl
+            },
             content: req.body.content
         }
         commentModel.create(newComment, (err, commentResult) => {

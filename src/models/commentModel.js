@@ -3,8 +3,13 @@ const Schema = mongoose.Schema;
 
 const commentSchema = new Schema({
     imageId: String,
-    date: Date,
-    user: {userId: String, userName: String},
+    date: String,
+    user: {
+        userId: String, 
+        userName: String,
+        fullName: String, 
+        avatarUrl: String
+    },
     content: String
 })
 

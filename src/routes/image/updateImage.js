@@ -5,8 +5,11 @@ const jwt = require('../../constants/token')
 module.exports = (req, res) => {
     jwt.verify(req.body.token).then((result) => {
         console.log(result);
-        const id = req.params.id;
-        imageModel.findOneAndUpdate({ _id: id }, { userName: "nguyentheanh170798@gmail.com" },{ new: true }, (err, imageResult) => {
+        const imageId = req.params.imageId;
+        imageModel.findOneAndUpdate({ _id: imageId }, 
+                                    { ...req.body }, 
+                                    { new: true }, 
+                                    ( err, imageResult ) => {
             if (imageResult && !err) {
                 res.status(200).json({
                     code: 200,
@@ -17,7 +20,7 @@ module.exports = (req, res) => {
                     }
                 })
             } else {
-                res.status(404).json({
+                res.status(400).json({
                     code: 400,
                     title: 'error',
                     data: {

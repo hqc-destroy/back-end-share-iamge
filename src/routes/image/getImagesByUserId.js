@@ -2,19 +2,15 @@ const imageModel = require('../../models/imageModel').image
 const jwt = require('../../constants/token')
 
 module.exports = (req, res) => {
-    jwt.verify(req.body.token).then((result) => {
-        const userId = result.user._id;
-        imageModel.find((err, result) => {
+        var userId = req.params.userId;      
+        imageModel.find({ userId: userId },(err, result) => {
             if (result && !err) {
-                const newArr = result.filter((image) => {
-                    return image.userId === userId;
-                })
                 res.status(200).json({
                     code: 200,
                     title: "SUCCESS",
                     data: {
                         message: "SUCCESS",
-                        images: newArr
+                        images: result,
                     }
                 })
             } else {
@@ -27,5 +23,4 @@ module.exports = (req, res) => {
                 })
             }
         })
-    })
 }
