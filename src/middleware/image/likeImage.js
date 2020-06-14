@@ -21,21 +21,35 @@ module.exports = (req,res,next) => {
         next("Error in middleware likeImage")
     } else {
         jwt.verify(req.body.token).then((result) => {
-            const userId = result.user._id;
-            userModel.findById({ _id: userId}, (err,result) => {
-                if(result && !err) {
-                    next()
-                } else {
-                    res.status(400).json({
-                        code: 400,
-                        title: 'error',
-                        data: {
-                            message: "user not exist"
-                        }
-                    })
-                    next("Error in middleware likeImage")
-                }
-            } )
+            console.log('result middleware: '+ result )
+            if( result.code === 200 )
+            {
+                const userId = result.data.user._id;
+                userModel.findOne({ _id: userId}, (err,userResult) => {
+                    if(userResult && !err) {
+                        next()
+                    } else {
+                        res.status(400).json({
+                            code: 400,
+                            title: 'error',
+                            data: {
+                                message: "user not exist"
+                            }
+                        })
+                        next("Error in middleware likeImage")
+                    }
+                } )
+            } else {
+                res.status(400).json({
+                    code: 400,
+                    title: 'error',
+                    data: {
+                        message: "fail to verify token"
+                    }
+                })
+                next("Error in middleware likeImage")
+            }
+            
         })
     }
 }

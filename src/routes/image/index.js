@@ -16,7 +16,7 @@ module.exports = () => {
     router.put(constants.IMAGE.UPDATE_IMAGE, middlewareImage.updateImage ,updateImage )
     router.delete(constants.IMAGE.DELETE_IMAGE, middlewareImage.deleteImage, deleteImage)
     router.get(constants.IMAGE.GET_IMAGE_BY_ID,getImageById)
-    router.post(constants.IMAGE.LIKE_IMAGE,likeImage)
+    router.post(constants.IMAGE.LIKE_IMAGE,middlewareImage.likeImage,likeImage)
 
     return router
 }

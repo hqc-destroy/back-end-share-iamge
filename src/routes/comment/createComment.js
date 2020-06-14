@@ -8,10 +8,10 @@ module.exports = (req, res) => {
             imageId : req.body.imageId,
             date: `${new Date().getDate()}/${new Date().getMonth()}/${new Date().getFullYear()}`,
             user: {
-                userId: result.user._id, 
-                userName: result.user.userName,
-                fullName: result.user.fullName,
-                avatarUrl: result.user.avatarUrl
+                userId: result.data.user._id, 
+                userName: result.data.user.userName,
+                fullName: result.data.user.fullName,
+                avatarUrl: result.data.user.avatarUrl
             },
             content: req.body.content
         }

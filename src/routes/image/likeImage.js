@@ -3,7 +3,8 @@ const jwt = require('../../constants/token')
 
 module.exports = (req, res) => {
     jwt.verify(req.body.token).then((result) => {
-        let userId = result.user._id;
+        console.log(result)
+        let userId = result.data.user._id;
         imageModel.findById({ _id: req.params.imageId }, (err, imageResult) => {
             if (imageResult && !err) {
                 let listUserIdLike = imageResult.listUserLike.map(
@@ -11,8 +12,8 @@ module.exports = (req, res) => {
                 );
                 if(!listUserIdLike.includes( userId )) {
                     imageResult.listUserLike.push( { 
-                        _id: result.user._id,
-                        userName : result.user.userName 
+                        _id: result.data.user._id,
+                        userName : result.data.user.userName 
                     })
                     imageResult.save()
                     res.status(200).json({
@@ -25,8 +26,8 @@ module.exports = (req, res) => {
                     });
                 } else {
                     imageResult.listUserLike.splice( imageResult.listUserLike.indexOf({
-                        _id: result.user._id,
-                        userName : result.user.userName 
+                        _id: result.data.user._id,
+                        userName : result.data.user.userName 
                     }),1 )
                     console.log(imageResult)
                     imageResult.save()

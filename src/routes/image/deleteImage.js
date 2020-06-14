@@ -3,7 +3,7 @@ const jwt = require('../../constants/token')
 
 module.exports = (req, res) => {
     jwt.verify(req.body.token).then((result) => {
-        if (result.user._id === req.params.userId) {
+        if (result.data.user._id === req.params.userId) {
             imageModel.findOneAndDelete({ _id: req.params.imageId }, (err, imageResult) => {
                 if (imageResult && !err) {
                     res.status(200).json({
@@ -24,7 +24,7 @@ module.exports = (req, res) => {
                     });
                 }
             })
-        }
+        }        
     })
     
 }

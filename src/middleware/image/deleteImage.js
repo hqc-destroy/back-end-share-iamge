@@ -30,19 +30,31 @@ module.exports = (req, res, next) => {
         next('Error in middleware deleteImage')
     } else {
         jwt.verify(req.body.token).then((result) => {
-            const _id = result.user._id;
-            if (req.params.userId !== _id) {
+            if( result.code === 200 ) {
+                const _id = result.data.user._id;
+                if (req.params.userId !== _id) {
+                    res.status(400).json({
+                        code: 400,
+                        title: "ERROR",
+                        data: {
+                            message: "User is not exist"
+                        }
+                    })
+                    next('Error in middleware deleteImage')
+                } else {
+                    next()
+                }
+            } else {
                 res.status(400).json({
                     code: 400,
                     title: "ERROR",
                     data: {
-                        message: "User is not exist"
+                        message: "fail to verify token"
                     }
                 })
                 next('Error in middleware deleteImage')
-            } else {
-                next()
             }
+            
         })
     }
 }
