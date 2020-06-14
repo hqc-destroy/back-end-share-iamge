@@ -11,7 +11,7 @@ module.exports = {
         LOGIN: '/login',
         UPDATE_PROFILE: '/',
         REQUEST_FLOW: '/flows/:userId',//post a request flow to user have userId
-        GET_FLOWS: '/flows' //list user flowing
+        GET_FLOWS: '/:userId/flows' //list user flowing
 
     },
     COMMENT: {
