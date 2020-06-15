@@ -31,7 +31,7 @@ module.exports = (req, res, next) => {
         jwt.verify(req.body.token).then((result) => {
             if(result.code === 200)
             {
-                const _id = result.user._id;
+                const _id = result.data.user._id;
                 if (req.params.userId !== _id) {
                     res.status(400).json({
                         code: 400,

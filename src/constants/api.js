@@ -4,7 +4,9 @@ module.exports = {
 
         COMMENT: '/api/comments', // /api/comment -> /api/comments
 
-        IMAGE: '/api/images'
+        IMAGE: '/api/images',
+
+        NOTIFY: '/api/notify'
     },
     USER: {
         CREATE_USER: '/', // /create-user -> /  note: Create a new user (method: post)
@@ -29,5 +31,8 @@ module.exports = {
         GET_IMAGE_BY_ID: '/:imageId',
         GET_IMAGES_BY_USERID: '/user/:userId',
         LIKE_IMAGE: '/:imageId/like'
+    },
+    NOTIFY: {
+        GET_NOTIFIES_BY_USERID: '/'
     }
 }
