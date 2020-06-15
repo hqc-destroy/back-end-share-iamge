@@ -8,7 +8,7 @@ function onClientSendNotify(socket, io) {
             userId: notify.userId,
             fromUserName: notify.fromUserName,
             imageId: notify.imageId,
-            date: ` ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds} ${new Date().getDate}/ ${new Date().getMonth()}/ ${new Date().getFullYear()}`
+            date: ` ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()} ${new Date().getDate()}/${new Date().getMonth()+1}/${new Date().getFullYear()}`
         }
         notifyModel.create(newNotify, (err, notifyResult) => {
             if(!err && notifyResult) {
@@ -25,11 +25,11 @@ function onClientSendNotify(socket, io) {
             userId: notify.userId,
             fromUserName: notify.fromUserName,
             imageId: notify.imageId,
-            date: ` ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds} ${new Date().getDate}/ ${new Date().getMonth()}/ ${new Date().getFullYear()}`
+            date: ` ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()} ${new Date().getDate()}/${new Date().getMonth()}/${new Date().getFullYear()}`
         }
         notifyModel.create(newNotify, (err, notifyResult) => {
             if(!err && notifyResult) {
-                io.to(notify.userName).emit("serverCommentImage", newNotify)
+                io.to(notify.userName).emit("serverCommentImage", newNotify,notify)
                 socket.emit('updateComment')
             }
         })
